@@ -1,13 +1,50 @@
 .foto-left
 {
-  height: 80%;
-  width: 80%;
+  height: 70%;
+  width: 70%;
   padding: 10px 10px 10px 100px;
 }
 
 .foto-right
 {
-  height: 80%;
-  width: 80%;
+  height: 70%;
+  width: 70%;
   padding: 10px 10px 10px 100px;
+}
+#tekst1{
+  color: yellow;
+  text-align: justify;
+  padding-top: 30px;
+  font-size: larger;
+
+}
+
+#tekst2{
+  color: yellow;
+  text-align: justify;
+  padding-top: 30px;
+  float: left;
+  height: 80%;
+  width: 50%;
+  font-size: larger;
+
+
+}
+
+#foto1{
+  height: 50%;
+  width: 50%;
+  float: left;
+  margin-top: 50px;
+  margin-right: 10px;
+
+}
+
+#foto2{
+  height: 40%;
+  width: 40%;
+  margin: 10px 10px;
+  float: right;
+  padding-top: 50px;
+
 }
