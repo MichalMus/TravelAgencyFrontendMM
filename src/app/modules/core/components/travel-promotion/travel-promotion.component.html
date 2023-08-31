@@ -1,0 +1,25 @@
+<div class="promotion-list" >
+  <table class="table" style="color: yellow;">
+    <thead>
+      <tr>
+        <th>L.p</th>
+        <th>Dokąd</th>
+        <th>Cena za osobę dorosłą</th>
+        <th>cena za dziecko</th>
+        <th>Data wylotu</th>
+        <th>Lotnisko</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let travel of travels; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{travel.hotelModel.cityModel.cityName}}</td>
+        <td>{{travel.adultPrice}}</td>
+        <td>{{travel.childPrice}}</td>
+        <td>{{travel.startDate | date: 'fullDate'}}</td>
+        <td>{{travel.start.airPortName}}</td>
+        <button type="button" class="btn btn-info mx-2 my-1" (click)="navigateToDetails(travel.id)">Szczegóły</button>
+      </tr>
+    </tbody>
+
+  </table>

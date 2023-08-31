@@ -7,6 +7,11 @@ import { FooterComponent } from './modules/core/components/footer/footer.compone
 import { HomecenterComponent } from './modules/core/components/homecenter/homecenter.component';
 import { AboutUsComponent } from './modules/core/components/about-us/about-us.component';
 import { ContactComponent } from './modules/core/components/contact/contact.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TravelPromotionComponent } from './modules/core/components/travel-promotion/travel-promotion.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { TravelDetailsComponent } from './modules/core/components/travel-details/travel-details.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +21,16 @@ import { ContactComponent } from './modules/core/components/contact/contact.comp
     HomecenterComponent,
     AboutUsComponent,
     ContactComponent,
+    TravelPromotionComponent,
+    TravelDetailsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
