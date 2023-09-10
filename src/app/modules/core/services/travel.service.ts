@@ -22,4 +22,22 @@ export class TravelService {
       `${this.apiUrl}` + '/travel/id/' + id + '',
     );
   }
+
+  searchTravelByContinent(continent: string): Observable<Travel[]> {
+    return this.httpClient.get<Travel[]>(
+      `${this.apiUrl}` + '/travel/continent2/' + continent + '',
+    );
+  }
+
+  searchTravelByCountry(country: string): Observable<Travel[]> {
+    return this.httpClient.get<Travel[]>(
+      `${this.apiUrl}` + '/travel/country2/' + country + '',
+    );
+  }
+
+  searchTravelByCity(city: string): Observable<Travel[]> {
+    return this.httpClient.get<Travel[]>(
+      `${this.apiUrl}` + '/travel/city2/' + city + '',
+    );
+  }
 }

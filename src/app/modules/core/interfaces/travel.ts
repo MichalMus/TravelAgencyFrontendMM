@@ -11,6 +11,6 @@ export interface Travel {
   adultsNumber: number;
   childrenNumber: number;
   promotion: boolean;
-  start: Airport;
-  hotelModel: Hotel;
+  start?: Airport;
+  hotelModel?: Hotel;
 }
