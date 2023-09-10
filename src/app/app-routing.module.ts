@@ -5,6 +5,7 @@ import { ContactComponent } from './modules/core/components/contact/contact.comp
 import { AboutUsComponent } from './modules/core/components/about-us/about-us.component';
 import { TravelPromotionComponent } from './modules/core/components/travel-promotion/travel-promotion.component';
 import { TravelDetailsComponent } from './modules/core/components/travel-details/travel-details.component';
+import { SearchTravelComponent } from './modules/core/components/search-travel/search-travel.component';
 
 const routes: Routes = [
   { path: '', component: HomecenterComponent, pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'about', component: AboutUsComponent, title: 'O nas' },
   { path: 'promotions', component: TravelPromotionComponent, title: 'promocje' },
   { path: 'travel/:id', component: TravelDetailsComponent, title: 'Szczegóły podróży' },
+  { path: 'search', component: SearchTravelComponent, title: 'Wyszukiwanie' },
 ];
 
 @NgModule({

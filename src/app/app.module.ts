@@ -12,6 +12,8 @@ import { TravelPromotionComponent } from './modules/core/components/travel-promo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { TravelDetailsComponent } from './modules/core/components/travel-details/travel-details.component';
+import { SearchTravelComponent } from './modules/core/components/search-travel/search-travel.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { TravelDetailsComponent } from './modules/core/components/travel-details
     ContactComponent,
     TravelPromotionComponent,
     TravelDetailsComponent,
+    SearchTravelComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { TravelDetailsComponent } from './modules/core/components/travel-details
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
