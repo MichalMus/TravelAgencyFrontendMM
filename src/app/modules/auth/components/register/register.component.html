@@ -1,0 +1,83 @@
+<div class="register-wrapper mt-3">
+  <h2 style="color: aliceblue">Zarejestruj się</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+
+    <div>
+      <mat-form-field>
+        <mat-label>Imię</mat-label>
+        <input matInput formControlName="personName"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Nazwisko</mat-label>
+        <input matInput formControlName="personSurname"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>e-mail</mat-label>
+        <input matInput placeholder="mail@gmail.com" formControlName="email"/>
+        <mat-error *ngIf="controls.email.invalid">{{getErrorMessage(controls.email)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Numer telefonu</mat-label>
+        <input matInput type="number" formControlName="telephoneNumber"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Adres - Miejscowość</mat-label>
+        <input matInput formControlName="cityOfLiving"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Kod pocztowy</mat-label>
+        <input matInput formControlName="zipCode"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>ulica i nr lokalu</mat-label>
+        <input matInput formControlName="streetAndNumber"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Pesel</mat-label>
+        <input matInput formControlName="personPesel"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Data urodzenia</mat-label>
+        <input matInput formControlName="birthdate"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"/>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+    <div class="d-flex justify-content-end">
+      <button mat-raised-button color="primary" type="submit" >Zarejestruj</button>
+    </div>
+  </div>
+  </form>
+</div>

@@ -10,10 +10,12 @@ import { ContactComponent } from './modules/core/components/contact/contact.comp
 import { HttpClientModule } from '@angular/common/http';
 import { TravelPromotionComponent } from './modules/core/components/travel-promotion/travel-promotion.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
 import { TravelDetailsComponent } from './modules/core/components/travel-details/travel-details.component';
 import { SearchTravelComponent } from './modules/core/components/search-travel/search-travel.component';
 import { FormsModule } from '@angular/forms';
+import { MaterialModule } from './modules/shared/material/material.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { ClientsModule } from './modules/clients/clients.module';
 
 @NgModule({
   declarations: [
@@ -32,8 +34,10 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    FormsModule
+    FormsModule,
+    MaterialModule,
+    AuthModule,
+    ClientsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

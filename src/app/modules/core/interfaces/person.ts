@@ -9,3 +9,4 @@ export interface PersonId {
   zipCode: string;
   telephoneNumber: number;
 }
+
