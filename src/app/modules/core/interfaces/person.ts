@@ -35,7 +35,7 @@ export class Person implements PersonResponse {
     public telephoneNumber: number,
   ) {}
 }
-// export interface GetClientResponse {
-//   clients: PersonResponse[];
-//   totalCount: number;
-// }
+export interface GetClientResponse {
+  clients: Person[];
+  totalCount: number;
+}
