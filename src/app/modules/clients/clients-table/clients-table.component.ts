@@ -11,6 +11,7 @@ import { map, merge, startWith, switchMap } from 'rxjs';
   styleUrls: ['./clients-table.component.css'],
 })
 export class ClientsTableComponent implements AfterViewInit {
+  totalCount = 0;
   displayedColumns: string[] = [
     'lp',
     'personName',
@@ -23,26 +24,47 @@ export class ClientsTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  // totalCount=0;
-
   constructor(private clientsService: ClientsService) {}
 
   ngAfterViewInit(): void {
-    this.clientsService.getPersons().subscribe({
-      next: (persons) => {
-        this.dataSource = new MatTableDataSource<Person>(persons);
-        console.log(persons);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
 
-        // this.totalCount = persons.totalCount;
-        // this.dataSource = new MatTableDataSource<Person>(persons.clients);
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          const pageIndex = this.paginator.pageIndex;
+          const itemsPerPage = this.paginator.pageSize;
+          const sortDirection = this.sort.direction;
+          const sortColumnName = this.sort.active;
 
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+          return this.clientsService.getPersons(
+            pageIndex,
+            itemsPerPage,
+            sortDirection,
+            sortColumnName,
+          );
+        }),
+        map((data) => {
+          this.totalCount = data.totalCount;
+          return data.clients;
+        }),
+      )
+      .subscribe((clients) => {
+        this.dataSource = new MatTableDataSource<Person>(clients);
+      });
+
+    // this.clientsService.getPersons().subscribe({
+    //   next: (persons) => {
+    //     this.dataSource = new MatTableDataSource<Person>(persons);
+    //     console.log(persons);
+    //     this.dataSource.paginator = this.paginator;
+    //     this.dataSource.sort = this.sort;
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //   },
+    // });
   }
 
   applyFilter(event: Event) {
