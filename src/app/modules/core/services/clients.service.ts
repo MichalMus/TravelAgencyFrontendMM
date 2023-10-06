@@ -105,20 +105,18 @@ export class ClientsService {
     itemsPerPage: number,
     sortDirection: string,
     sortColumnName: string,
+    value = '',
   ): Observable<GetClientResponse> {
-    let params;
+    let params = new HttpParams()
+      .append('page', pageIndex)
+      .append('size', itemsPerPage)
+      .append('sort', 'ASC')
+      .append('column', 'id');
     if (sortColumnName) {
-      params = new HttpParams()
-        .append('page', pageIndex)
-        .append('size', itemsPerPage)
-        .append('sort', sortDirection)
-        .append('column', sortColumnName);
-    } else {
-      params = new HttpParams()
-        .append('page', pageIndex)
-        .append('size', itemsPerPage)
-        .append('sort', 'ASC')
-        .append('column', 'id');
+      params = params.set('sort', sortDirection).set('column', sortColumnName);
+    }
+    if (value) {
+      params = params.append('surname', value);
     }
     return this.httpClient
       .get<GetClientResponse>(`${this.apiUrl}` + '/personsid/persons', {
