@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export interface PersonResponse {
   id: number;
   personName: string;
@@ -19,7 +21,7 @@ export interface PostPerson {
   zipCode: string;
   streetAndNumber: string;
   personPesel: string;
-  password: string;
+  // password: string;
 }
 
 export class Person implements PersonResponse {
@@ -38,4 +40,16 @@ export class Person implements PersonResponse {
 export interface GetClientResponse {
   clients: Person[];
   totalCount: number;
+}
+
+export interface PostClientForm {
+  personName: FormControl<string>;
+  personSurname: FormControl<string>;
+  email: FormControl<string>;
+  telephoneNumber: FormControl<string>;
+  cityOfLiving: FormControl<string>;
+  zipCode: FormControl<string>;
+  streetAndNumber: FormControl<string>;
+  personPesel: FormControl<string>;
+  // birthdate: FormControl<string>,
 }

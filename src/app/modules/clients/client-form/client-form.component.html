@@ -1,0 +1,80 @@
+<div class="client-form-wrapper mt-3">
+  <h2 style="color: aliceblue">Zarejestruj się</h2>
+  <form [formGroup]="clientForm" (ngSubmit)="onAddClient()">
+
+    <div>
+      <mat-form-field>
+        <mat-label>Imię</mat-label>
+        <input matInput formControlName="personName"/>
+        <mat-error *ngIf="controls.personName.invalid">{{getErrorMessage(controls.personName)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Nazwisko</mat-label>
+        <input matInput formControlName="personSurname"/>
+        <mat-error *ngIf="controls.personSurname.invalid">{{getErrorMessage(controls.personSurname)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>e-mail</mat-label>
+        <input matInput placeholder="mail@gmail.com" formControlName="email"/>
+        <mat-error *ngIf="controls.email.invalid">{{getErrorMessage(controls.email)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Numer telefonu</mat-label>
+        <input matInput type="number" formControlName="telephoneNumber"/>
+        <mat-error *ngIf="controls.telephoneNumber.invalid">{{getErrorMessage(controls.telephoneNumber)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Adres - Miejscowość</mat-label>
+        <input matInput formControlName="cityOfLiving"/>
+        <mat-error *ngIf="controls.cityOfLiving.invalid">{{getErrorMessage(controls.cityOfLiving)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Kod pocztowy</mat-label>
+        <input matInput formControlName="zipCode"/>
+        <mat-error *ngIf="controls.zipCode.invalid">{{getErrorMessage(controls.zipCode)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>ulica i nr lokalu</mat-label>
+        <input matInput formControlName="streetAndNumber"/>
+        <mat-error *ngIf="controls.streetAndNumber.invalid">{{getErrorMessage(controls.streetAndNumber)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Pesel</mat-label>
+        <input matInput formControlName="personPesel"/>
+        <mat-error *ngIf="controls.personPesel.invalid">{{getErrorMessage(controls.personPesel)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- <div>
+      <mat-form-field>
+        <mat-label>Data urodzenia</mat-label>
+        <input matInput formControlName="birthdate"/>
+      </mat-form-field>
+    </div> -->
+    <div class="d-flex justify-content-end">
+      <button [disabled]="clientForm.invalid" mat-raised-button color="primary" type="submit" >Dodaj nowego klienta</button>
+    </div>
+    <app-alert *ngIf = "errorMessage" [text]="errorMessage" ></app-alert>
+  </form>
+</div>
