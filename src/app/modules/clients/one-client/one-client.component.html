@@ -1,0 +1,35 @@
+<div *ngIf="client">
+<section class="mt-4">
+  <div class="example-container mat-elevation-z8 bg-light" *ngIf = "client">
+    <div class="personInfo">
+      <p class="head">Dane klienta:</p>
+      <p>{{client.personName}} {{client.personSurname}}</p>
+      <p *ngIf="!client.personName && !client.personSurname">brak</p>
+    </div>
+    <div class="personInfo">
+      <p class="head">Pesel:</p>
+      <p >{{client.personPesel}}</p>
+      <p *ngIf="!client.personPesel">brak</p>
+    </div>
+    <div class="personInfo">
+      <p class="head">Data urodzenia:</p>
+      <p>{{client.birthdate |date: 'yyyy-MM-dd'}}</p>
+      <p *ngIf="!client.birthdate">brak</p>
+    </div>
+    <div class="personInfo">
+      <p class="head">Adres:</p>
+      <p>{{client.cityOfLiving}} {{client.zipCode}} {{client.streetAndNumber}}</p>
+      <p *ngIf="!client.cityOfLiving && !client.streetAndNumber">brak</p>
+    </div>
+    <div class="personInfo">
+      <p class="head">Numer kontaktowy:</p>
+      <p>{{client.telephoneNumber}}</p>
+      <p *ngIf="!client.telephoneNumber">brak</p>
+    </div>
+    <div class="mx-3 py-2">
+      <button type="button" class="btn btn-danger mx-2" (click)="openDialog()">Usuń</button>
+      <button type="button" class="btn btn-warning" (click)="edit()">Edytuj</button>
+    </div>
+  </div>
+</section>
+</div>

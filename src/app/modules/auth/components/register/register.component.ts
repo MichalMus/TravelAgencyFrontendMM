@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostPerson } from 'src/app/modules/core/interfaces/person';
 import { AuthserviceService } from 'src/app/modules/core/services/authservice.service';
+import { FormsService } from 'src/app/modules/core/services/forms.service';
 
 @Component({
   selector: 'app-register',
@@ -62,6 +63,7 @@ export class RegisterComponent {
   constructor(
     private authService: AuthserviceService,
     private router: Router,
+    private formsService: FormsService,
   ) {}
 
   onRegister() {
@@ -77,12 +79,6 @@ export class RegisterComponent {
     return this.registerForm.controls;
   }
   getErrorMessage(control: FormControl) {
-    if (control.hasError('required')) {
-      return 'Musisz wprowadzić wartość';
-    }
-    if (control.hasError('minlength')) {
-      return 'Przekazałeś za mało znaków';
-    }
-    return control.hasError('email') ? 'Nieprawidłowy adres e-mail' : '';
+    return this.formsService.getErrorMessage(control);
   }
 }

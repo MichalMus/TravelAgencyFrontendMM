@@ -16,90 +16,6 @@ export class ClientsService {
   apiUrl = environment.apiUrl;
   constructor(private httpClient: HttpClient) {}
 
-  // getPersons(pageIndex: number, itemsPerPage: number): Observable<Person[]> {
-  //   const params = new HttpParams()
-  //     .append('_page', pageIndex)
-  //     .append('size', itemsPerPage);
-
-  // return this.httpClient
-  //   .get<PersonResponse[]>(`${this.apiUrl}` + '/personsid/persons', {
-  //     params,
-  //   })
-  //   .pipe(
-  //     map((persons) =>
-  //       persons.map(
-  //         ({
-  //           id,
-  //           personName,
-  //           personSurname,
-  //           personPesel,
-  //           birthdate,
-  //           cityOfLiving,
-  //           streetAndNumber,
-  //           zipCode,
-  //           telephoneNumber,
-  //         }) =>
-  //           new Person(
-  //             id,
-  //             personName,
-  //             personSurname,
-  //             personPesel,
-  //             birthdate,
-  //             cityOfLiving,
-  //             streetAndNumber,
-  //             zipCode,
-  //             telephoneNumber,
-  //           ),
-  //       ),
-  //     ),
-  //   );
-
-  // getPersons(
-  //   pageIndex: number,
-  //   itemsPerPage: number,
-  // ): Observable<GetClientResponse> {
-  //   const params = new HttpParams()
-  //     .append('_page', pageIndex)
-  //     .append('size', itemsPerPage);
-
-  //   return this.httpClient
-  //     .get<PersonResponse[]>(`${this.apiUrl}` + '/personsid/persons', {
-  //       observe: 'response',
-  //       params,
-  //     })
-  //     .pipe(
-  //       map((response) => {
-  //         const totalCount = Number(response.headers.get('al'));
-  //         if (!response.body) return { clients: [], totalCount: 0 };
-  //         const personArr: Person[] = response.body.map(
-  //           ({
-  //             id,
-  //             personName,
-  //             personSurname,
-  //             personPesel,
-  //             birthdate,
-  //             cityOfLiving,
-  //             streetAndNumber,
-  //             zipCode,
-  //             telephoneNumber,
-  //           }) =>
-  //             new Person(
-  //               id,
-  //               personName,
-  //               personSurname,
-  //               personPesel,
-  //               birthdate,
-  //               cityOfLiving,
-  //               streetAndNumber,
-  //               zipCode,
-  //               telephoneNumber,
-  //             ),
-  //         );
-  //         return { clients: personArr, totalCount };
-  //       }),
-  //     );
-  // }
-
   getPersons(
     pageIndex: number,
     itemsPerPage: number,
@@ -155,6 +71,37 @@ export class ClientsService {
       );
   }
 
+  getOneClient(id: number): Observable<Person> {
+    return this.httpClient
+      .get<PersonResponse>(`${this.apiUrl}/personsid/id/${id}`)
+      .pipe(
+        map(
+          ({
+            id,
+            personName,
+            personSurname,
+            personPesel,
+            birthdate,
+            cityOfLiving,
+            streetAndNumber,
+            zipCode,
+            telephoneNumber,
+          }) =>
+            new Person(
+              id,
+              personName,
+              personSurname,
+              personPesel,
+              birthdate,
+              cityOfLiving,
+              streetAndNumber,
+              zipCode,
+              telephoneNumber,
+            ),
+        ),
+      );
+  }
+
   addPerson(personData: PostPerson): Observable<Person> {
     return this.httpClient
       .post<PersonResponse>(`${this.apiUrl}/personsid/addPerson`, personData)
@@ -185,4 +132,50 @@ export class ClientsService {
         ),
       );
   }
+
+  // deleteClient(id: number): Observable<Record<string, never>> {
+  //   return this.httpClient.delete<Record<string, never>>(
+  //     `${this.apiUrl}/personsid/deletePerson/${id}`,
+  //   );
+  // }
+
+  deleteClient(id: number): Observable<{}> {
+    return this.httpClient.delete(
+      `${this.apiUrl}/personsid/deletePerson/${id}`,
+    );
+  }
+
+  editPerson(personData: PostPerson): Observable<Person> {
+    return this.httpClient
+      .put<PersonResponse>(`${this.apiUrl}/personsid/addPerson`, personData)
+      .pipe(
+        map(
+          ({
+            id,
+            personName,
+            personSurname,
+            personPesel,
+            birthdate,
+            cityOfLiving,
+            streetAndNumber,
+            zipCode,
+            telephoneNumber,
+          }) =>
+            new Person(
+              id,
+              personName,
+              personSurname,
+              personPesel,
+              birthdate,
+              cityOfLiving,
+              streetAndNumber,
+              zipCode,
+              telephoneNumber,
+            ),
+        ),
+      );
+  }
+
+
+
 }

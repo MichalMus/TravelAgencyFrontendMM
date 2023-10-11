@@ -1,0 +1,13 @@
+.head
+{
+  font-weight: bold;
+  font-size: medium;
+  font-family: Arial, Helvetica, sans-serif;
+ 
+
+
+}
+.personInfo{
+display: inline-block;
+margin: 30px;
+}
