@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PostClientForm } from '../../core/interfaces/person';
+import { Person, PostClientForm } from '../../core/interfaces/person';
 import { FormsService } from '../../core/services/forms.service';
 import { ClientsService } from '../../core/services/clients.service';
 import { Router } from '@angular/router';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-client-form',
@@ -17,6 +18,22 @@ export class ClientFormComponent implements OnInit {
     private route: Router,
   ) {}
   errorMessage = '';
+  @Input() editMode = false;
+  @Input() client!: Person;
+  @Output() closeDialog = new EventEmitter<void>();
+  observer: Observer<unknown> = {
+    next: () => {
+      this.errorMessage = '';
+      if (this.editMode) {
+        this.emitCloseDialog();
+      }
+      this.route.navigate(['/clients']);
+    },
+    error: (err) => {
+      this.errorMessage = 'Wystąpił błąd';
+    },
+    complete: () => {},
+  };
 
   clientForm!: FormGroup<PostClientForm>;
   get controls() {
@@ -27,13 +44,15 @@ export class ClientFormComponent implements OnInit {
     this.initForm();
   }
   onAddClient() {
-    this.clientServices.addPerson(this.clientForm.getRawValue()).subscribe({
-      next: () => {
-        this.errorMessage = '';
-        this.route.navigate(['/clients']);
-      },
-      error: (err) => (this.errorMessage = 'Wystąpił błąd'),
-    });
+    if (this.editMode) {
+      this.clientServices
+        .editPerson(this.clientForm.getRawValue(), this.client.id)
+        .subscribe(this.observer);
+      return;
+    }
+    this.clientServices
+      .addPerson(this.clientForm.getRawValue())
+      .subscribe(this.observer);
   }
 
   getErrorMessage(control: FormControl) {
@@ -42,15 +61,18 @@ export class ClientFormComponent implements OnInit {
 
   private initForm() {
     this.clientForm = new FormGroup({
-      personName: new FormControl('', {
+      personName: new FormControl(this.editMode ? this.client.personName : '', {
         validators: [Validators.required],
         nonNullable: true,
       }),
-      personSurname: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
-      email: new FormControl('', {
+      personSurname: new FormControl(
+        this.editMode ? this.client.personSurname : '',
+        {
+          validators: [Validators.required],
+          nonNullable: true,
+        },
+      ),
+      email: new FormControl(this.editMode ? this.client.email : '', {
         validators: [
           Validators.required,
           Validators.email,
@@ -59,30 +81,46 @@ export class ClientFormComponent implements OnInit {
         ],
         nonNullable: true,
       }),
-      personPesel: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
+      personPesel: new FormControl(
+        this.editMode ? this.client.personPesel : '',
+        {
+          validators: [Validators.required],
+          nonNullable: true,
+        },
+      ),
       // birthdate: new FormControl('', {
       //   validators: [Validators.required],
       //   nonNullable: true,
       // }),
-      cityOfLiving: new FormControl('', {
+      cityOfLiving: new FormControl(
+        this.editMode ? this.client.cityOfLiving : '',
+        {
+          validators: [Validators.required],
+          nonNullable: true,
+        },
+      ),
+      streetAndNumber: new FormControl(
+        this.editMode ? this.client.streetAndNumber : '',
+        {
+          validators: [Validators.required],
+          nonNullable: true,
+        },
+      ),
+      zipCode: new FormControl(this.editMode ? this.client.zipCode : '', {
         validators: [Validators.required],
         nonNullable: true,
       }),
-      streetAndNumber: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
-      zipCode: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
-      telephoneNumber: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
+      telephoneNumber: new FormControl(
+        this.editMode ? this.client.telephoneNumber : '',
+        {
+          validators: [Validators.required],
+          nonNullable: true,
+        },
+      ),
     });
+  }
+
+  emitCloseDialog() {
+    this.closeDialog.emit();
   }
 }

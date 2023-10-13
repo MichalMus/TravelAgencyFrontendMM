@@ -1,26 +1,27 @@
-import { FormControl } from "@angular/forms";
+import { FormControl } from '@angular/forms';
 
 export interface PersonResponse {
   id: number;
   personName: string;
   personSurname: string;
   personPesel: string;
-  birthdate: Date;
+  // birthdate: Date;
   cityOfLiving: string;
   streetAndNumber: string;
   zipCode: string;
-  telephoneNumber: number;
+  telephoneNumber: string;
+  email: string;
 }
 
 export interface PostPerson {
   personName: string;
   personSurname: string;
-  email: string;
-  telephoneNumber: string;
-  cityOfLiving: string;
-  zipCode: string;
-  streetAndNumber: string;
   personPesel: string;
+  cityOfLiving: string;
+  streetAndNumber: string;
+  zipCode: string;
+  telephoneNumber: string;
+  email: string;
   // password: string;
 }
 
@@ -30,11 +31,12 @@ export class Person implements PersonResponse {
     public personName: string,
     public personSurname: string,
     public personPesel: string,
-    public birthdate: Date,
+    // public birthdate: Date,
     public cityOfLiving: string,
     public streetAndNumber: string,
     public zipCode: string,
-    public telephoneNumber: number,
+    public telephoneNumber: string,
+    public email: string,
   ) {}
 }
 export interface GetClientResponse {
@@ -45,11 +47,11 @@ export interface GetClientResponse {
 export interface PostClientForm {
   personName: FormControl<string>;
   personSurname: FormControl<string>;
-  email: FormControl<string>;
-  telephoneNumber: FormControl<string>;
-  cityOfLiving: FormControl<string>;
-  zipCode: FormControl<string>;
-  streetAndNumber: FormControl<string>;
   personPesel: FormControl<string>;
-  // birthdate: FormControl<string>,
+  cityOfLiving: FormControl<string>;
+  streetAndNumber: FormControl<string>;
+  zipCode: FormControl<string>;
+  telephoneNumber: FormControl<string>;
+  email: FormControl<string>;
+  // birthdate: FormControl<string>;
 }

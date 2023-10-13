@@ -11,11 +11,11 @@
       <p >{{client.personPesel}}</p>
       <p *ngIf="!client.personPesel">brak</p>
     </div>
-    <div class="personInfo">
+    <!-- <div class="personInfo">
       <p class="head">Data urodzenia:</p>
       <p>{{client.birthdate |date: 'yyyy-MM-dd'}}</p>
       <p *ngIf="!client.birthdate">brak</p>
-    </div>
+    </div> -->
     <div class="personInfo">
       <p class="head">Adres:</p>
       <p>{{client.cityOfLiving}} {{client.zipCode}} {{client.streetAndNumber}}</p>
@@ -28,7 +28,7 @@
     </div>
     <div class="mx-3 py-2">
       <button type="button" class="btn btn-danger mx-2" (click)="openDialog()">Usuń</button>
-      <button type="button" class="btn btn-warning" (click)="edit()">Edytuj</button>
+      <button type="button" class="btn btn-warning" (click)="openEditDialog()">Edytuj klienta</button>
     </div>
   </div>
 </section>
