@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ContactComponent } from 'src/app/modules/core/components/contact/contact.component';
 import { Person } from 'src/app/modules/core/interfaces/person';
 import { ClientsService } from 'src/app/modules/core/services/clients.service';
 

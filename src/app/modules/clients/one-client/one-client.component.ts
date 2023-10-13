@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs';
 import { Person } from '../../core/interfaces/person';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteClientDialogComponent } from './delete-client-dialog/delete-client-dialog.component';
+import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dialog.component';
 
 @Component({
   selector: 'app-one-client',
@@ -35,5 +36,12 @@ export class OneClientComponent implements OnInit {
       data: { person: this.client },
     });
   }
-  edit() {}
+
+  openEditDialog() {
+    const dialogRef = this.dialog.open(EditClientDialogComponent, {
+      data: { person: this.client },
+      width: '600px',
+      maxWidth: '600px'
+    });
+  }
 }

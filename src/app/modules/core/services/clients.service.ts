@@ -48,22 +48,24 @@ export class ClientsService {
               personName,
               personSurname,
               personPesel,
-              birthdate,
+              // birthdate,
               cityOfLiving,
               streetAndNumber,
               zipCode,
               telephoneNumber,
+              email,
             }) =>
               new Person(
                 id,
                 personName,
                 personSurname,
                 personPesel,
-                birthdate,
+                // birthdate,
                 cityOfLiving,
                 streetAndNumber,
                 zipCode,
                 telephoneNumber,
+                email,
               ),
           );
           return { clients: personArr, totalCount };
@@ -81,22 +83,24 @@ export class ClientsService {
             personName,
             personSurname,
             personPesel,
-            birthdate,
+            // birthdate,
             cityOfLiving,
             streetAndNumber,
             zipCode,
             telephoneNumber,
+            email,
           }) =>
             new Person(
               id,
               personName,
               personSurname,
               personPesel,
-              birthdate,
+              // birthdate,
               cityOfLiving,
               streetAndNumber,
               zipCode,
               telephoneNumber,
+              email,
             ),
         ),
       );
@@ -112,22 +116,23 @@ export class ClientsService {
             personName,
             personSurname,
             personPesel,
-            birthdate,
             cityOfLiving,
             streetAndNumber,
             zipCode,
             telephoneNumber,
+            email,
           }) =>
             new Person(
               id,
               personName,
               personSurname,
               personPesel,
-              birthdate,
+              // birthdate,
               cityOfLiving,
               streetAndNumber,
               zipCode,
               telephoneNumber,
+              email,
             ),
         ),
       );
@@ -145,9 +150,9 @@ export class ClientsService {
     );
   }
 
-  editPerson(personData: PostPerson): Observable<Person> {
+  editPerson(personData: PostPerson, id: number): Observable<Person> {
     return this.httpClient
-      .put<PersonResponse>(`${this.apiUrl}/personsid/addPerson`, personData)
+      .put<PersonResponse>(`${this.apiUrl}/personsid/id/${id}`, personData)
       .pipe(
         map(
           ({
@@ -155,27 +160,26 @@ export class ClientsService {
             personName,
             personSurname,
             personPesel,
-            birthdate,
+            // birthdate,
             cityOfLiving,
             streetAndNumber,
             zipCode,
             telephoneNumber,
+            email,
           }) =>
             new Person(
               id,
               personName,
               personSurname,
               personPesel,
-              birthdate,
+              // birthdate,
               cityOfLiving,
               streetAndNumber,
               zipCode,
               telephoneNumber,
+              email,
             ),
         ),
       );
   }
-
-
-
 }
