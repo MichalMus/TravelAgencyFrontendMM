@@ -7,6 +7,7 @@ import { TravelPromotionComponent } from './modules/core/components/travel-promo
 import { TravelDetailsComponent } from './modules/core/components/travel-details/travel-details.component';
 import { SearchTravelComponent } from './modules/core/components/search-travel/search-travel.component';
 
+
 const routes: Routes = [
   { path: '', component: HomecenterComponent, pathMatch: 'full' },
   { path: 'contact', component: ContactComponent, title: 'Kontakt' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'promotions', component: TravelPromotionComponent, title: 'promocje' },
   { path: 'travel/:id', component: TravelDetailsComponent, title: 'Szczegóły podróży' },
   { path: 'search', component: SearchTravelComponent, title: 'Wyszukiwanie' },
+
 ];
 
 @NgModule({

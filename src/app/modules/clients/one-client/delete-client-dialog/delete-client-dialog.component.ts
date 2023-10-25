@@ -10,8 +10,10 @@ import { ClientsService } from 'src/app/modules/core/services/clients.service';
   styleUrls: ['./delete-client-dialog.component.css'],
 })
 export class DeleteClientDialogComponent implements OnInit {
+
   person!: Person;
   errorMessage = '';
+
   constructor(
     private dialogRef: MatDialogRef<DeleteClientDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { person: Person },

@@ -1,0 +1,58 @@
+<div class="hotel-form-wrapper mt-3">
+  <h2 *ngIf="editMode" style="color: aliceblue">Dodaj nowego klienta</h2>
+  <form [formGroup]="hotelForm" (ngSubmit)="onAddHotel()">
+
+    <div>
+      <mat-form-field>
+        <mat-label>Nazwa hotelu</mat-label>
+        <input matInput formControlName="hotelName"/>
+        <mat-error *ngIf="controls.hotelName.invalid">{{getErrorMessage(controls.hotelName)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Ilość gwiazdek</mat-label>
+        <input matInput type="number" formControlName="starsNumber"/>
+        <mat-error *ngIf="controls.starsNumber.invalid">{{getErrorMessage(controls.starsNumber)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Opis</mat-label>
+        <input matInput  formControlName="hotelDescription"/>
+        <mat-error *ngIf="controls.hotelDescription.invalid">{{getErrorMessage(controls.hotelDescription)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Nazwa miasta</mat-label>
+        <input matInput formControlName="cityName"/>
+        <mat-error *ngIf="controls.cityName.invalid">{{getErrorMessage(controls.cityName)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Nazwa kraju</mat-label>
+        <input matInput formControlName="countryName"/>
+        <mat-error *ngIf="controls.countryName.invalid">{{getErrorMessage(controls.countryName)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Kontynent</mat-label>
+        <input matInput formControlName="continentName"/>
+        <mat-error *ngIf="controls.continentName.invalid">{{getErrorMessage(controls.continentName)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button *ngIf="editMode" type="button" mat-raised-button color="warn" (click)="emitCloseDialog()">Anuluj</button>
+      <button [disabled]="hotelForm.invalid" mat-raised-button class="mx-1 my-2 " color="primary" type="submit" >{{editMode ? 'Edytuj hotel' : 'Dodaj nowy hotel'}}</button>
+    </div>
+    <app-alert *ngIf = "errorMessage" [text]="errorMessage" ></app-alert>
+  </form>
+</div>
