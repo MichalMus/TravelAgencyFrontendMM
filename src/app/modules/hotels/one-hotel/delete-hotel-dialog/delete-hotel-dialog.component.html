@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Czy usunąć hotel?</h1>
+<mat-dialog-content>
+  <p>Nazwa</p>
+  <p>{{hotel.hotelName}} {{hotel.cityModel}}</p>
+  <app-alert *ngIf="errorMessage">{{errorMessage}}</app-alert>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="warn"  (click)="onDelete()" cdkFocusInitial>Usuń</button>
+  <button mat-raised-button color="primary" mat-dialog-close="">Anuluj</button>
+</mat-dialog-actions>

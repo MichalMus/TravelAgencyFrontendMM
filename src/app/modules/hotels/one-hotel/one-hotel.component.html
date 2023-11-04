@@ -1,0 +1,30 @@
+<div *ngIf="hotel">
+  <section class="mt-4">
+    <div class="example-container mat-elevation-z8 bg-light" *ngIf = "hotel">
+      <div class="hotelInfo">
+        <p class="head">Nazwa</p>
+        <p>{{hotel.hotelName}}</p>
+        <p *ngIf="!hotel.hotelName">brak</p>
+      </div>
+      <div class="hotelInfo">
+        <p class="head">Liczba gwiazdek:</p>
+        <p >{{hotel.starsNumber}}</p>
+        <p *ngIf="!hotel.starsNumber">brak</p>
+      </div>
+      <div class="hotelInfo">
+        <p class="head">Opis:</p>
+        <p>{{hotel.hotelDescription}}</p>
+        <p *ngIf="!hotel.hotelDescription">brak</p>
+      </div>
+      <div class="hotelInfo">
+        <p class="head">Miasto:</p>
+        <p>{{hotel.cityModel.cityName}}</p>
+        <p *ngIf="!hotel.cityModel.cityName">brak</p>
+      </div>
+      <div class="mx-3 py-2">
+        <button type="button" class="btn btn-danger mx-2" (click)="openDialog()">Usuń</button>
+        <button type="button" class="btn btn-warning" (click)="openEditDialog()">Edytuj klienta</button>
+      </div>
+    </div>
+  </section>
+  </div>

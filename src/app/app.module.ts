@@ -12,10 +12,12 @@ import { TravelPromotionComponent } from './modules/core/components/travel-promo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TravelDetailsComponent } from './modules/core/components/travel-details/travel-details.component';
 import { SearchTravelComponent } from './modules/core/components/search-travel/search-travel.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './modules/shared/material/material.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ClientsModule } from './modules/clients/clients.module';
+import { HotelsModule } from './modules/hotels/one-hotel/hotels.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ClientsModule } from './modules/clients/clients.module';
     TravelDetailsComponent,
     SearchTravelComponent,
   ],
+  providers: [],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,8 +42,9 @@ import { ClientsModule } from './modules/clients/clients.module';
     MaterialModule,
     AuthModule,
     ClientsModule,
+    HotelsModule,
+    ReactiveFormsModule,
+    SharedModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
