@@ -76,7 +76,7 @@ export class HotelsService {
   }
 
   addHotel(hotelData: PostHotel): Observable<Hotel> {
-    this.continent = new PostContinent2(hotelData.cityName);
+    this.continent = new PostContinent2(hotelData.continentName);
     this.country = new PostCountry2(hotelData.countryName, this.continent);
     this.city = new PostCity2(hotelData.cityName, this.country);
     this.hotelDataPost = new Hotel2(
