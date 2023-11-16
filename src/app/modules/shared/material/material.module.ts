@@ -10,6 +10,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { A11yModule } from '@angular/cdk/a11y';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [],
   imports: [CommonModule, MatToolbarModule, MatButtonModule],
@@ -24,6 +25,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     MatPaginatorModule,
     MatDialogModule,
     A11yModule,
+    MatSelectModule
   ],
 })
 export class MaterialModule {}

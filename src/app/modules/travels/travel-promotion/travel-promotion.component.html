@@ -1,0 +1,66 @@
+<!-- <div class="promotion-list" >
+  <table class="table" style="color: yellow;">
+    <thead>
+      <tr>
+        <th>L.p</th>
+        <th>Dokąd</th>
+        <th>Cena za osobę dorosłą</th>
+        <th>cena za dziecko</th>
+        <th>Data wylotu</th>
+        <th>Lotnisko</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let travel of travels; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{travel.hotelModel?.cityModel?.cityName}}</td>
+        <td>{{travel.adultPrice}}</td>
+        <td>{{travel.childPrice}}</td>
+        <td>{{travel.startDate | date: 'fullDate'}}</td>
+        <td>{{travel.start?.airPortName}}</td>
+        <button type="button" class="btn btn-info mx-2 my-1" (click)="navigateToDetails(travel.id)">Szczegóły</button>
+      </tr>
+    </tbody>
+
+  </table> -->
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Dokąd">
+      <th mat-header-cell *matHeaderCellDef> Dokąd </th>
+      <td mat-cell *matCellDef="let row"> {{row.hotelModel.cityModel.cityName}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Cena za osobę dorosłą">
+      <th mat-header-cell *matHeaderCellDef> Cena za osobę dorosłą </th>
+      <td mat-cell *matCellDef="let row"> {{row.adultPrice}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="cena za dziecko">
+      <th mat-header-cell *matHeaderCellDef> cena za dziecko </th>
+      <td mat-cell *matCellDef="let row"> {{row.childPrice}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Data wylotu">
+      <th mat-header-cell *matHeaderCellDef> Data wylotu </th>
+      <td mat-cell *matCellDef="let row"> {{row.startDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-raised-button color="primary" (click)="navigateToDetails(row.id)">Szczegóły</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

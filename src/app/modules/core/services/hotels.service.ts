@@ -9,9 +9,9 @@ import {
   HotelResponse,
   PostHotel,
 } from '../interfaces/hotel';
-import { City, PostCity2 } from '../interfaces/city';
-import { Country, PostCountry2 } from '../interfaces/country';
-import { Continent, PostContinent2 } from '../interfaces/continent';
+import { PostCity2 } from '../interfaces/city';
+import { PostCountry2 } from '../interfaces/country';
+import { PostContinent2 } from '../interfaces/continent';
 @Injectable({
   providedIn: 'root',
 })
@@ -111,13 +111,42 @@ export class HotelsService {
   }
 
   editHotel(hotelData: PostHotel, id: number): Observable<Hotel> {
+    this.continent = new PostContinent2(hotelData.continentName);
+    this.country = new PostCountry2(hotelData.countryName, this.continent);
+    this.city = new PostCity2(hotelData.cityName, this.country);
+    this.hotelDataPost = new Hotel2(
+      hotelData.hotelName,
+      hotelData.starsNumber,
+      hotelData.hotelDescription,
+      this.city,
+    );
     return this.httpClient
-      .put<HotelResponse>(`${this.apiUrl}/hotel/id/${id}`, hotelData)
+      .put<HotelResponse>(`${this.apiUrl}/hotel/id/${id}`, this.hotelDataPost)
       .pipe(
         map(
           ({ id, hotelName, starsNumber, hotelDescription, cityModel }) =>
             new Hotel(id, hotelName, starsNumber, hotelDescription, cityModel),
         ),
+      );
+  }
+
+  getHotelsInCity(cityId: number): Observable<Hotel[]> {
+    return this.httpClient
+      .get<HotelResponse[]>(`${this.apiUrl}/hotel/city/${cityId}`)
+      .pipe(
+        map((response) => {
+          const hotelArr: Hotel[] = response.map(
+            ({ id, hotelName, starsNumber, hotelDescription, cityModel }) =>
+              new Hotel(
+                id,
+                hotelName,
+                starsNumber,
+                hotelDescription,
+                cityModel,
+              ),
+          );
+          return hotelArr;
+        }),
       );
   }
 }

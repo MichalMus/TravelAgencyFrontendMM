@@ -1,0 +1,97 @@
+<!-- eslint-disable @angular-eslint/template/elements-content -->
+<div class="hotel-form-wrapper mt-3">
+  <h2 *ngIf="editMode" style="color: aliceblue">Dodaj nowego klienta</h2>
+  <!-- <form [formGroup]="travelForm" (ngSubmit)="onAddHotel()"> -->
+
+  <!-- <div>
+      <mat-form-field>
+        <mat-label>Nazwa hotelu</mat-label>
+        <input matInput formControlName="hotelName"/>
+        <mat-error *ngIf="controls.hotelName.invalid">{{getErrorMessage(controls.hotelName)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Ilość gwiazdek</mat-label>
+        <input matInput type="number" formControlName="starsNumber"/>
+        <mat-error *ngIf="controls.starsNumber.invalid">{{getErrorMessage(controls.starsNumber)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Opis</mat-label>
+        <input matInput  formControlName="hotelDescription"/>
+        <mat-error *ngIf="controls.hotelDescription.invalid">{{getErrorMessage(controls.hotelDescription)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Nazwa miasta</mat-label>
+        <input matInput formControlName="cityName"/>
+        <mat-error *ngIf="controls.cityName.invalid">{{getErrorMessage(controls.cityName)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Nazwa kraju</mat-label>
+        <input matInput formControlName="countryName"/>
+        <mat-error *ngIf="controls.countryName.invalid">{{getErrorMessage(controls.countryName)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Kontynent</mat-label>
+        <input matInput formControlName="continentName"/>
+        <mat-error *ngIf="controls.continentName.invalid">{{getErrorMessage(controls.continentName)}}</mat-error>
+      </mat-form-field>
+    </div> -->
+
+  <div>
+    <mat-form-field>
+      <mat-label>Miasto</mat-label>
+      <mat-select  #cityId>
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city.cityName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button (click)="findHotelsInCity(cityId.value.id)">Wyszukaj Hotele</button>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Hotel</mat-label>
+      <mat-select  #hotelId>
+        <mat-option *ngFor="let hotel of hotels" [value]="hotel">
+          {{ hotel.hotelName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button (click)="chooseHotel(hotelId.value.id)">Wybierz</button>
+    </div>
+  </div>
+
+
+  <div class="d-flex justify-content-end">
+    <button
+      *ngIf="editMode"
+      type="button"
+      mat-raised-button
+      color="warn"
+      (click)="emitCloseDialog()"
+    >
+      Anuluj
+    </button>
+    <!-- <button [disabled]="hotelForm.invalid" mat-raised-button class="mx-1 my-2 " color="primary" type="submit" >{{editMode ? 'Edytuj hotel' : 'Dodaj nowy hotel'}}</button> -->
+  </div>
+  <app-alert *ngIf="errorMessage" [text]="errorMessage"></app-alert>
+  <!-- </form> -->
+</div>
