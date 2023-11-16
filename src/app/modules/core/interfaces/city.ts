@@ -1,6 +1,7 @@
 import { Country, PostCountry2 } from './country';
 
 export interface CityResponse {
+  id: number;
   cityName: string;
   countryModel: Country;
 }

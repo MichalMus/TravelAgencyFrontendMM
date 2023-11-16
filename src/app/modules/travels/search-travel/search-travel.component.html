@@ -13,15 +13,17 @@
       <label for="destinationName" class="form-label" style="color: aliceblue;">Wpisz nazwę :</label>
       <input class="form-control" type="text" placeholder="nazwa kraju/kontynetu/miasta" [(ngModel)]="destinationName" name="destinationName" aria-label="Disabled input example" id="destinationName" [disabled]="!kindOfSearching">
     </div>
-    <button type="button" class="btn btn-primary" (click)="findAllTravelsByDestination()">Wyszukaj</button>
+    <div>
+    <button type="button" class="btn btn-primary my-2" (click)="findAllTravelsByDestination()">Wyszukaj</button>
+  </div>
 
-    <table style="color: aliceblue;">
+    <table style="color: aliceblue;" >
 
       <tr>
         <td>L.p</td>
         <td>Kraj</td>
         <td>Miasto</td>
-        <td>Cena - dorosły</td>
+        <td >Cena - dorosły</td>
         <td>cena - dziecko</td>
         <td>Data wylotu</td>
         <td>Lotnisko</td>
@@ -29,12 +31,12 @@
 
   <tr *ngFor="let travel of travels; let i = index">
       <td>{{i+1}}</td>
-      <td>{{travel.hotelModel?.cityModel?.countryModel?.countryName}}</td>
-      <td>{{travel.hotelModel?.cityModel?.cityName}}</td>
+      <td>{{travel.hotelModel.cityModel.countryModel.countryName}}</td>
+      <td>{{travel.hotelModel.cityModel.cityName}}</td>
       <td>{{travel.adultPrice}}</td>
       <td>{{travel.childPrice}}</td>
       <td>{{travel.startDate | date: 'dd.MM.yyyy'}}</td>
-      <td>{{travel.start?.airPortName}}</td>
+      <td>{{travel.start.airPortName}}</td>
   </tr>
 </table>
 

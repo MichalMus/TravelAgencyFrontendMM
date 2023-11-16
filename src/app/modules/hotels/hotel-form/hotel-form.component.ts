@@ -17,10 +17,12 @@ export class HotelFormComponent implements OnInit {
     private hotelServices: HotelsService,
     private route: Router,
   ) {}
+
   errorMessage = '';
   @Input() editMode = false;
   @Input() hotel!: Hotel;
   @Output() closeDialog = new EventEmitter<void>();
+
   observer: Observer<unknown> = {
     next: () => {
       this.errorMessage = '';
@@ -37,6 +39,7 @@ export class HotelFormComponent implements OnInit {
   };
 
   hotelForm!: FormGroup<PostHotelForm>;
+  
   get controls() {
     return this.hotelForm.controls;
   }
