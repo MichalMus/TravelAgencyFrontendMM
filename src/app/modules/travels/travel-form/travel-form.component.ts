@@ -1,12 +1,4 @@
-import {
-  AfterViewChecked,
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsService } from '../../core/services/forms.service';
 import { TravelService } from '../../core/services/travel.service';
 import { Router } from '@angular/router';
@@ -18,7 +10,6 @@ import { Country } from '../../core/interfaces/country';
 import { Hotel } from '../../core/interfaces/hotel';
 import { CitiesService } from '../../core/services/cities.service';
 import { HotelsService } from '../../core/services/hotels.service';
-import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-travel-form',
@@ -34,7 +25,12 @@ export class TravelFormComponent implements OnInit {
     private cityService: CitiesService,
   ) {}
 
+  countries!: Country[];
+  cities: City[] = [];
+  hotels: Hotel[] = [];
+  oneHotel!: Hotel;
   errorMessage = '';
+  travelForm!: FormGroup<PostTravelForm>;
   @Input() editMode = false;
   @Input() travel!: Travel;
   @Output() closeDialog = new EventEmitter<void>();
@@ -45,7 +41,7 @@ export class TravelFormComponent implements OnInit {
       if (this.editMode) {
         this.emitCloseDialog();
       }
-      this.route.navigate(['/travels']);
+      // this.route.navigate(['/travels']);
     },
     error: (err) => {
       this.errorMessage = 'Wystąpił błąd';
@@ -53,13 +49,6 @@ export class TravelFormComponent implements OnInit {
     },
     complete: () => {},
   };
-
-  travelForm!: FormGroup<PostTravelForm>;
-
-  countries!: Country[];
-  cities: City[] = [];
-  hotels: Hotel[] = [];
-  oneHotel!: Hotel;
 
   get controls() {
     return this.travelForm.controls;
@@ -74,70 +63,36 @@ export class TravelFormComponent implements OnInit {
     });
   }
 
-  // onAddHotel() {
-  //   if (this.editMode) {
-  //     this.travelServices
-  //       .editTravel(this.travelForm.getRawValue(), this.travel.id)
-  //       .subscribe(this.observer);
-  //     return;
-  //   }
-  //   this.travelServices
-  //     .addTravel(this.travelForm.getRawValue())
-  //     .subscribe(this.observer);
-  // }
+  onAddHotel() {
+    // if (this.editMode) {
+    //   this.travelServices
+    //     .editTravel(this.travelForm.getRawValue(), this.travel.id)
+    //     .subscribe(this.observer);
+    //   return;
+    // }
+    this.travelServices
+      .addTravel(this.travelForm.getRawValue())
+      .subscribe(this.observer);
+    console.log(this.travelForm.controls);
+  }
 
-  // getErrorMessage(control: FormControl) {
-  //   return this.formsService.getErrorMessage(control);
-  // }
+  getErrorMessage(control: FormControl) {
+    return this.formsService.getErrorMessage(control);
+  }
 
   private initForm() {
-    //   this.travelForm = new FormGroup({
-    //     hotelName: new FormControl(
-    //       this.editMode ? this.travel.hotelModel.hotelName : '',
-    //       {
-    //         validators: [Validators.required],
-    //         nonNullable: true,
-    //       },
-    //     ),
-    //     starsNumber: new FormControl(this.editMode ? this.hotel.starsNumber : 0, {
-    //       validators: [Validators.required],
-    //       nonNullable: true,
-    //     }),
-    //     hotelDescription: new FormControl(
-    //       this.editMode ? this.hotel.hotelDescription : '',
-    //       {
-    //         validators: [
-    //           Validators.required,
-    //           Validators.maxLength(250),
-    //           Validators.minLength(5),
-    //         ],
-    //         nonNullable: true,
-    //       },
-    //     ),
-    //     cityName: new FormControl(
-    //       this.editMode ? this.hotel.cityModel.cityName : '',
-    //       {
-    //         validators: [Validators.required],
-    //         nonNullable: true,
-    //       },
-    //     ),
-    //     countryName: new FormControl(
-    //       this.editMode ? this.hotel.cityModel.countryModel.countryName : '',
-    //       {
-    //         validators: [Validators.required],
-    //         nonNullable: true,
-    //       },
-    //     ),
-    //     continentName: new FormControl(
-    //       this.editMode
-    //         ? this.hotel.cityModel.countryModel.continentModel.continentName
-    //         : '',
-    //       {
-    //         // validators: [Validators.required],
-    //         nonNullable: true,
-    //       },
-    //     ),
-    //   });
+    this.travelForm = new FormGroup({
+      hotelModel: new FormControl(this.oneHotel, { nonNullable: true }),
+      startDate: new FormControl('', { nonNullable: true }),
+      endDate: new FormControl('', { nonNullable: true }),
+      numberOfDays: new FormControl(0, { nonNullable: true }),
+      adultPrice: new FormControl(0, { nonNullable: true }),
+      adultsNumber: new FormControl(0, { nonNullable: true }),
+      childPrice: new FormControl(0, { nonNullable: true }),
+      childrenNumber: new FormControl(0, { nonNullable: true }),
+      promotion: new FormControl(false, { nonNullable: true }),
+      // start: new FormControl(),
+    });
   }
 
   emitCloseDialog() {

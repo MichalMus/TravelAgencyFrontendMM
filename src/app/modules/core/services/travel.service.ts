@@ -76,6 +76,8 @@ export class TravelService {
       );
   }
 
+
+
   editTravel(travelData: PostTravel, id: number): Observable<Travel> {
     return this.httpClient
       .put<TravelResponse>(`${this.apiUrl}/travel/id/${id}`, travelData)

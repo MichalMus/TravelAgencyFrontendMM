@@ -38,6 +38,7 @@ export class Hotel2 {
   ) {}
 }
 
+
 export interface GetHotelResponse {
   hotels: Hotel[];
   totalCount: number;
