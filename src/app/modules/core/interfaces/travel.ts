@@ -17,15 +17,15 @@ export interface TravelResponse {
 }
 export interface PostTravel {
   hotelModel: Hotel;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   numberOfDays: number;
   adultPrice: number;
   adultsNumber: number;
   childPrice: number;
   childrenNumber: number;
   promotion: boolean;
-  start: Airport;
+  // start: Airport;
 }
 
 export class Travel implements TravelResponse {
@@ -44,29 +44,20 @@ export class Travel implements TravelResponse {
   ) {}
 }
 
-// export class Travel2 {
-//   constructor(
-//     public hotelName: string,
-//     public starsNumber: number,
-//     public hotelDescription: string,
-//     public cityModel: PostCity2,
-//   ) {}
-// }
-
 export interface GetTravelResponse {
   travels: Travel[];
   totalCount: number;
 }
 
 export interface PostTravelForm {
-  hotelName: FormControl<string>;
-  startDate: FormControl<number>;
+  hotelModel: FormControl<Hotel>;
+  startDate: FormControl<string>;
   endDate: FormControl<string>;
   numberOfDays: FormControl<number>;
   adultPrice: FormControl<number>;
   adultsNumber: FormControl<number>;
   childPrice: FormControl<number>;
-  childrenNumber: FormControl<string>;
-  promotion: FormControl<string>;
-  start: FormControl<string>;
+  childrenNumber: FormControl<number>;
+  promotion: FormControl<boolean>;
+  // start: FormControl<string>;
 }

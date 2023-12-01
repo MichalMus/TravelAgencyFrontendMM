@@ -11,6 +11,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule, MatToolbarModule, MatButtonModule],
@@ -25,7 +28,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatPaginatorModule,
     MatDialogModule,
     A11yModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 })
 export class MaterialModule {}
